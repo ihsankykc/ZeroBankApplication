@@ -79,8 +79,13 @@ public class FindTransactionsStepDefs {
         AccountActivityPage accountActivityPage=new AccountActivityPage();
         List<String> actualResults=new ArrayList<>();
         actualResults = accountActivityPage.getResultTableDescriptions();
+        System.out.println("actualResults.size() = " + actualResults.size());
         for (String actualResult : actualResults) {
-            Assert.assertTrue("Verify description contains "+string,actualResult.contains(string));
+            if (actualResults.size()>0){
+                Assert.assertTrue("Verify description contains "+string,actualResult.contains(string));
+            }else if (actualResults.size()==0){
+                Assert.fail("Verify searchbox is case insensitive");
+            }
         }
     }
 
